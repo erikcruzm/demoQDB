@@ -1,0 +1,48 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: dev
+
+
+info.app.name: demoQDB
+info.app.description: This is a Spring boot demoQDB.
+info.app.version: 1.0.0
+
+---
+
+spring:
+  profiles: dev
+  datasource:
+    postgres:
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://192.168.1.131:5444/fuse
+      username: enterprisedb
+      password: ipcom123
+    mysql:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://192.168.1.150:3306/fuse
+      username: fuse
+      password: IPCom123.
+  activemq:
+    brokerUrl: tcp://broker-amq-tcp.amq-prueba.svc.cluster.local:61616
+    user: admin
+    password: ipcom123.
+    packages.trust-all: true
+    
+#    brokerUrl: tcp://localhost:61616
+#    user: admin
+#    password: admin
+#    packages.trust-all: true
+
+
+
+
+toRoute:  jdbc:dataSource
+selectNode: sql:select * from ITEMS where sku =:#skuId?dataSource=#dataSource
+fromNewQueue: activemq:helloworld
+toMysql:  jdbc:dataSourceMySql
+
+
+
