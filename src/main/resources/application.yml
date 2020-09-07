@@ -41,7 +41,7 @@ spring:
 
 toRoute:  jdbc:dataSource
 selectNode: sql:select * from ITEMS where sku =:#skuId?dataSource=#dataSource
-fromNewQueue: activemq:helloworld
+fromNewQueue: activemq:sqlQueue
 toMysql:  jdbc:dataSourceMySql
 
 
