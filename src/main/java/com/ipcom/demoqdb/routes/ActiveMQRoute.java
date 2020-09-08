@@ -35,15 +35,15 @@ public class ActiveMQRoute extends RouteBuilder{
         from("{{fromNewQueue}}")
         .log("Read Message from sqlQueue ${body}")
 		.log("Read headers from sqlQueue ${headers}");
-//		.choice()
-//        .when(simple("${header.nombre} == 'ADD'"))
-//            .log("Es agregar")
-//            .to("{{toMysql}}")
-//        .when(simple("${header.nombre} == 'UPDATE'"))
-//            .log("Es actualizar")
-//            .to("{{toMysql}}")
-//        .otherwise()
-//            .log("No se encontro operacion");
+		.choice()
+        .when(simple("${header.nombre} == 'ADD'"))
+            .log("Es agregar")
+            .to("{{toMysql}}")
+        .when(simple("${header.nombre} == 'UPDATE'"))
+            .log("Es actualizar")
+            .to("{{toMysql}}")
+        .otherwise()
+            .log("No se encontro operacion");
 
         }
 }
